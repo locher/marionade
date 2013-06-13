@@ -40,17 +40,25 @@ $partie2 = $table_expression[$random2][1];
 
 ?>
 
-
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Générateur de Marionade</title>
 	<link rel="stylesheet" href="style.css">
+	<link href='http://fonts.googleapis.com/css?family=Radley:400,400italic' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
-	<?php echo $partie1.' '.$partie2; ?>
+	<div class="wrapper">
+
+		<h1 class="citation"><?php echo $partie1.' '.$partie2; ?></h1>
+
+
+
+
+
+	</div>
 
 </body>
 </html>

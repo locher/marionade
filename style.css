@@ -1,0 +1,29 @@
+body{
+	font-family: Radley;
+}
+
+.wrapper{
+	margin-top: 10%;
+}
+
+.citation{	
+	font-weight: 400;
+	font-size: 75px;
+	color:#474747;
+	font-style: italic;
+	text-align: center;
+}
+
+.citation:before{
+	content:url('img/guillemets.png');
+	margin-right: 10px;
+}
+
+.citation:after{
+	content:url('img/guillemets.png');
+	margin-left: 10px;
+	position: relative;
+	top: 60px
+}
+
+
