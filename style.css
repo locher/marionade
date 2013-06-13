@@ -26,4 +26,17 @@ body{
 	top: 60px
 }
 
+.conteneur-refresh{
+	text-align: center;
+	margin-top: 40px;
+}
+
+.refresh{
+	font-size: 37px;
+	color:#5a243c;
+	background-color: #e970a6;
+	text-decoration: none;
+	padding:25px;
+	display: inline-block;
+}
 

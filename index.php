@@ -54,9 +54,11 @@ $partie2 = $table_expression[$random2][1];
 
 		<h1 class="citation"><?php echo $partie1.' '.$partie2; ?></h1>
 
+		<div class="conteneur-refresh">
+			<a href="" class="refresh">Une autre !</a>
+		</div>
 
-
-
+		
 
 	</div>
 
