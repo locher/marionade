@@ -58,7 +58,7 @@ $partie2 = $table_expression[$random2][1];
 			<a href="" class="refresh">Une autre !</a>
 		</div>
 
-		<p class="nombre_expression">Il y a actuellement <span><?php echo count($table_expression);?></span> expressions répertoriés.</p>
+		<p class="nombre_expression">Il y a actuellement <span><?php echo count($table_expression);?></span> expressions répertoriées.</p>
 
 	</div>
 
