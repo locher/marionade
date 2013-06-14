@@ -27,7 +27,6 @@ while($export_expressions = $expressions->fetch()){
 $count_max = count($table_expression) - 1;
 
 //random
-
 $random1 = rand(0,$count_max);
 $random2 = rand(0,$count_max);
 
@@ -58,7 +57,7 @@ $partie2 = $table_expression[$random2][1];
 			<a href="" class="refresh">Une autre !</a>
 		</div>
 
-		<p class="nombre_expression">Il y a actuellement <span><?php echo count($table_expression);?></span> expressions répertoriées.</p>
+		<p class="nombre_expression">Il y a actuellement <span><?php echo count($table_expression);?></span> expressions répertoriées, soit <span><?php echo(count($table_expression)*count($table_expression)-count($table_expression));?></span> possibilitées.</p>
 
 	</div>
 
