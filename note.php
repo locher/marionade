@@ -78,7 +78,7 @@ else if($etat_note == 'negatif')
 	}	
 }
 
-?>
+//On les redirige sur une autre quote
+header("Location: index.php");
 
-<p>Note positive : <?php echo $valeur_note_positif;?></p>
-<p>Note négative : <?php echo $valeur_note_negatif;?></p>
+?>
