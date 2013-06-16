@@ -1,15 +1,6 @@
+<?php include('inc/bdd.php');?>
+
 <?php
-
-//Connexion BDD
-
-try
-{
-    $bdd = new PDO('mysql:host=localhost;dbname=marionade', 'root', '');
-}
-catch (Exception $e)
-{
-    die('Ca chie');
-}
 
 //Récupérer le tableau
 $bdd->query('SET NAMES "utf8"');
@@ -19,7 +10,7 @@ $expressions = $bdd->query('SELECT * FROM expressions');
 $table_expression = array();
 
 while($export_expressions = $expressions->fetch()){
-	$conteneur_expression = array($export_expressions['partie1'],$export_expressions['partie2']);
+	$conteneur_expression = array($export_expressions['partie1'],$export_expressions['partie2'],$export_expressions['expression_id']);
 	$table_expression[]=$conteneur_expression;
 }
 
@@ -36,6 +27,9 @@ while ($random1 == $random2) {
 
 $partie1 = $table_expression[$random1][0];
 $partie2 = $table_expression[$random2][1];
+
+$id_partie1 = $table_expression[$random1][2];
+$id_partie2 = $table_expression[$random2][2];
 
 ?>
 
@@ -59,7 +53,15 @@ $partie2 = $table_expression[$random2][1];
 
 		<p class="nombre_expression">Il y a actuellement <span><?php echo count($table_expression);?></span> expressions répertoriées, soit <span><?php echo(count($table_expression)*count($table_expression)-count($table_expression));?></span> possibilitées.</p>
 
+		<form method="post" action="send_valeurs.php" class="formulaire_note">		
+			<input type="submit" value="Je kiffe">
+			<input type="hidden" name="part_expression_1" value="<?php echo $id_partie1;?>" />
+			<input type="hidden" name="part_expression_2" value="<?php echo $id_partie2;?>" />
+		</form>
+
 	</div>
+
+
 
 </body>
 </html>
