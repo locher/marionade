@@ -53,10 +53,18 @@ $id_partie2 = $table_expression[$random2][2];
 
 		<p class="nombre_expression">Il y a actuellement <span><?php echo count($table_expression);?></span> expressions répertoriées, soit <span><?php echo(count($table_expression)*count($table_expression)-count($table_expression));?></span> possibilitées.</p>
 
-		<form method="post" action="send_valeurs.php" class="formulaire_note">		
+		<form method="post" action="note.php" class="formulaire_note">		
 			<input type="submit" value="Je kiffe">
 			<input type="hidden" name="part_expression_1" value="<?php echo $id_partie1;?>" />
 			<input type="hidden" name="part_expression_2" value="<?php echo $id_partie2;?>" />
+			<input type="hidden" name="etat_note" value="positif" />
+		</form>
+
+		<form method="post" action="note.php" class="formulaire_note">		
+			<input type="submit" value="Cette expression est vraiment naze">
+			<input type="hidden" name="part_expression_1" value="<?php echo $id_partie1;?>" />
+			<input type="hidden" name="part_expression_2" value="<?php echo $id_partie2;?>" />
+			<input type="hidden" name="etat_note" value="negatif" />
 		</form>
 
 	</div>
