@@ -1,44 +1,10 @@
-<?php include('inc/bdd.php');?>
-
-<?php
-
-//Récupérer le tableau
-$bdd->query('SET NAMES "utf8"');
-$expressions = $bdd->query('SELECT * FROM expressions');
-
-
-$table_expression = array();
-
-while($export_expressions = $expressions->fetch()){
-	$conteneur_expression = array($export_expressions['partie1'],$export_expressions['partie2'],$export_expressions['expression_id']);
-	$table_expression[]=$conteneur_expression;
-}
-
-//nombre d'expressions
-$count_max = count($table_expression) - 1;
-
-//random
-$random1 = rand(0,$count_max);
-$random2 = rand(0,$count_max);
-
-while ($random1 == $random2) {
-	$random1 = rand(0,$count_max);
-}
-
-$partie1 = $table_expression[$random1][0];
-$partie2 = $table_expression[$random2][1];
-
-$id_partie1 = $table_expression[$random1][2];
-$id_partie2 = $table_expression[$random2][2];
-
-?>
-
+<?php include('affichage_quote.php');?>
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Générateur de Marionade</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="css/style.css">
 	<link href='http://fonts.googleapis.com/css?family=Radley:400,400italic' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -51,23 +17,54 @@ $id_partie2 = $table_expression[$random2][2];
 			<a href="" class="refresh">Une autre !</a>
 		</div>
 
-		<p class="nombre_expression">Il y a actuellement <span><?php echo count($table_expression);?></span> expressions répertoriées, soit <span><?php echo(count($table_expression)*count($table_expression)-count($table_expression));?></span> possibilitées.</p>
+		<div class="conteneur_note">
+			<form method="post" action="note.php" class="formulaire_note like_form">		
+				<input type="submit" value="&#57344;">
+				<input type="hidden" name="part_expression_1" value="<?php echo $id_partie1;?>" />
+				<input type="hidden" name="part_expression_2" value="<?php echo $id_partie2;?>" />
+				<input type="hidden" name="etat_note" value="positif" />
+				<p>(
+					<?php 
+						if(isset($note_positive))
+						{
+							echo $note_positive;
+						}
+						else
+						{
+							echo '0';
+						}
+					?>
+				)</p>
+			</form>
 
-		<form method="post" action="note.php" class="formulaire_note">		
-			<input type="submit" value="Je kiffe">
-			<input type="hidden" name="part_expression_1" value="<?php echo $id_partie1;?>" />
-			<input type="hidden" name="part_expression_2" value="<?php echo $id_partie2;?>" />
-			<input type="hidden" name="etat_note" value="positif" />
-		</form>
+			<form method="post" action="note.php" class="formulaire_note dislike_form">		
+				<input type="submit" value="&#57345;">
+				<input type="hidden" name="part_expression_1" value="<?php echo $id_partie1;?>" />
+				<input type="hidden" name="part_expression_2" value="<?php echo $id_partie2;?>" />
+				<input type="hidden" name="etat_note" value="negatif" />
+				<p>(
+					<?php 
+						if(isset($note_negative))
+						{
+							echo $note_negative;
+						}
+						else
+						{
+							echo '0';
+						}
+					?>
+				)</p>
+			</form>
+		</div>
 
-		<form method="post" action="note.php" class="formulaire_note">		
-			<input type="submit" value="Cette expression est vraiment naze">
-			<input type="hidden" name="part_expression_1" value="<?php echo $id_partie1;?>" />
-			<input type="hidden" name="part_expression_2" value="<?php echo $id_partie2;?>" />
-			<input type="hidden" name="etat_note" value="negatif" />
-		</form>
+		<footer>
+			<p class="nombre_expression">Il y a actuellement <span><?php echo count($table_expression);?></span> expressions répertoriées, soit <span><?php echo(count($table_expression)*count($table_expression)-count($table_expression));?></span> possibilitées.</p>
+		</footer>
 
 	</div>
+
+
+
 
 
 

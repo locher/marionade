@@ -53,7 +53,7 @@ if($etat_note == 'positif')
 	//Si elle existe pas encore, on ajoute la ligne
 	else
 	{
-	$bdd->query("INSERT INTO note_expression (id_partie1, partie_id1, id_partie2, partie_id2, note_positif) VALUES ('".$part_expression_1."', 1, '".$part_expression_2."', 2,'".$valeur_note_positif."')");
+	$bdd->query("INSERT INTO note_expression (id_partie1, partie_id1, afficher_combinaison, id_partie2, partie_id2, note_positif) VALUES ('".$part_expression_1."', 1, true,'".$part_expression_2."', 2,'".$valeur_note_positif."')");
 	echo "note positif et valeur innexistante";
 	}	
 }
@@ -73,7 +73,7 @@ else if($etat_note == 'negatif')
 	//Si elle existe pas encore, on ajoute la ligne
 	else
 	{
-	$bdd->query("INSERT INTO note_expression (id_partie1, partie_id1, id_partie2, partie_id2, note_negatif) VALUES ('".$part_expression_1."', 1, '".$part_expression_2."', 2,'".$valeur_note_negatif."')");
+	$bdd->query("INSERT INTO note_expression (id_partie1, partie_id1, afficher_combinaison, id_partie2, partie_id2, note_negatif) VALUES ('".$part_expression_1."', 1, 1, '".$part_expression_2."', 2,'".$valeur_note_negatif."')");
 	echo "note negative et valeur innexistante";
 	}	
 }
