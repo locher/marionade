@@ -25,9 +25,9 @@
 				<input type="hidden" name="etat_note" value="positif" />
 				<p>(
 					<?php 
-						if(isset($note_positive))
+						if(isset($note_positif))
 						{
-							echo $note_positive;
+							echo $note_positif;
 						}
 						else
 						{
@@ -44,9 +44,9 @@
 				<input type="hidden" name="etat_note" value="negatif" />
 				<p>(
 					<?php 
-						if(isset($note_negative))
+						if(isset($note_negatif))
 						{
-							echo $note_negative;
+							echo $note_negatif;
 						}
 						else
 						{

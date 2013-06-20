@@ -32,6 +32,15 @@ if(count($export_negatif)==2)
 	$valeur_note_negatif = $export_negatif[0];
 }
 
+//Si trop de note négative, on vire la quote
+
+$affichable = 1;
+
+if($valeur_note_negatif-$valeur_note_positif >= 5)
+{
+	$affichable = 0;
+}
+
 
 /*********************
 UPDATE DES DATABASE 
@@ -66,7 +75,7 @@ else if($etat_note == 'negatif')
 	//Regarder si la note existe déjà
 	if(count($export_negatif)==2)
 	{
-		$bdd->query('UPDATE note_expression SET note_negatif='.$valeur_note_negatif.' WHERE id_partie1='.$part_expression_1.' AND id_partie2='.$part_expression_2.'');
+		$bdd->query('UPDATE note_expression SET note_negatif='.$valeur_note_negatif.',afficher_combinaison='.$affichable.' WHERE id_partie1='.$part_expression_1.' AND id_partie2='.$part_expression_2.'');
 		echo "note negative et valeur existante";
 	}
 
@@ -78,7 +87,6 @@ else if($etat_note == 'negatif')
 	}	
 }
 
-//On les redirige sur une autre quote
 header("Location: index.php");
 
 ?>

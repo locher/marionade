@@ -1,11 +1,12 @@
-<?php include('inc/bdd.php');?>
-
 <?php
 
-//Récupérer le tableau
-$bdd->query('SET NAMES "utf8"');
-$expressions = $bdd->query('SELECT * FROM expressions');
+include('inc/bdd.php');
 
+$bdd->query('SET NAMES "utf8"');
+
+//Récupérer toutes les quotes pour les compter
+
+$expressions = $bdd->query('SELECT * FROM expressions');
 
 $table_expression = array();
 
@@ -14,53 +15,19 @@ while($export_expressions = $expressions->fetch()){
 	$table_expression[]=$conteneur_expression;
 }
 
-//nombre d'expressions
-$count_max = count($table_expression) - 1;
+//Récupérer une quote aléatoire
 
-//random
-$random1 = rand(0,$count_max);
-$random2 = rand(0,$count_max);
+$expressions = $bdd->query('SELECT note_positif, note_negatif, t1.partie1, t2.partie2, t1.expression_id as id1, t2.expression_id, afficher_combinaison FROM expressions as t1 LEFT JOIN expressions as t2 ON (t1.expression_id <> t2.expression_id) LEFT JOIN note_expression ON (t1.expression_id = note_expression.id_partie1 AND t2.expression_id = note_expression.id_partie2) WHERE afficher_combinaison = 1 OR afficher_combinaison IS NULL ORDER BY rand() LIMIT 1');
+ 
+$export_expressions = $expressions->fetch();
 
-//Si on tombe sur le même chiffre, on recommence
-while ($random1 == $random2){
-	$random1 = rand(0,$count_max);
-}
+$partie1 = $export_expressions[2];
+$partie2 = $export_expressions[3];
 
-//Les id (différents) obtenus par Random
+$note_positif = $export_expressions[0];
+$note_negatif = $export_expressions[1];
 
-$id_partie1 = $table_expression[$random1][2];
-$id_partie2 = $table_expression[$random2][2];
-
-//vérifier les note de la combinaison et si il a le droit de s'afficher
-
-$query_note = $bdd->query('SELECT afficher_combinaison, note_positif, note_negatif FROM note_expression WHERE id_partie1='.$id_partie1.' AND id_partie2='.$id_partie2.'');
-
-$export_affichable = $query_note->fetch();
-
-$affichable = $export_affichable[0];
-$note_positive = $export_affichable[1];
-$note_negative = $export_affichable[2];
-
-
-//Ok on regarde ce qui a derrière les ID
-
-$partie1 = $table_expression[$random1][0];
-$partie2 = $table_expression[$random2][1];
-
-//Gérer les notes
-
-if(count($export_affichable)>0)
-{
-	if(isset($affichable) AND $affichable==false)
-	{
-		//change de combinaison
-	}
-
-	else if($affichable==true)
-	{
-		//tout roule bébé
-	}
-}
-
+$id_partie1 = $export_expressions[4];
+$id_partie2 = $export_expressions[5];
 
 ?>
